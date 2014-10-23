@@ -1,5 +1,7 @@
 ## atom-utils
 
+[![Build Status](https://travis-ci.org/abe33/atom-utils.svg?branch=master)](https://travis-ci.org/abe33/atom-utils)
+
 A bunch of general purpose utilities for Atom packages.
 
 ### requirePackages
