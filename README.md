@@ -49,6 +49,8 @@ class DummyNode extends HTMLElement
     @subscriptions.add @subscribeTo 'div',
       click: (e) ->
         console.log("won't be called if the click is done on the child span")
+        # Events propagation can be used to prevents the delegated handlers
+        # to catch the events in continuation.
         e.stopPropagation()
 
     # By passing a node and a selector, it registers to the event on the
