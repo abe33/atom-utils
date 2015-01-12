@@ -42,10 +42,10 @@ class EventsDelegation extends Mixin
 
   eachSelectorFromTarget: (event, target, eventsForObject) ->
     @nodeAndItsAncestors target, (node) =>
-      unless event.isPropagationStopped
-        @eachSelector eventsForObject, (selector,callback) =>
-          if not event.isImmediatePropagationStopped and @targetMatch(node, selector)
-            callback(event)
+      return if event.isPropagationStopped
+      @eachSelector eventsForObject, (selector,callback) =>
+        return if event.isImmediatePropagationStopped or not @targetMatch(node, selector)
+        callback(event)
 
   eachSelector: (eventsForObject, callback) ->
     keys = Object.keys(eventsForObject)
