@@ -2,5 +2,4 @@
 .travis.yml
 .DS_Store
 npm-debug.log
-*.coffee
 node_modules
