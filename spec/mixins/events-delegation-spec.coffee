@@ -1,4 +1,4 @@
-EventsDelegation = require '../../lib/mixins/events-delegation'
+{EventsDelegation} = require '../../lib/atom-utils'
 {click} = require '../helpers/events'
 
 class DummyNode extends HTMLElement
