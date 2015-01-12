@@ -14,14 +14,17 @@ class EventsDelegation extends Mixin
     [events, selector] = [selector, NO_SELECTOR] if typeof selector is 'object'
 
     @eventsMap ?= new WeakMap
+    @disposablesMap ?= new WeakMap
     @eventsMap.set(object, {}) unless @eventsMap.get(object)?
+    @disposablesMap.set(object, {}) unless @disposablesMap.get(object)?
 
     eventsForObject = @eventsMap.get(object)
+    disposablesForObject = @disposablesMap.get(object)
 
     eachPair events, (event, callback) =>
       unless eventsForObject[event]?
         eventsForObject[event] = {}
-        @createEventListener(object, event)
+        disposablesForObject[event] = @createEventListener(object, event)
 
       eventsForObject[event][selector] = callback
 
@@ -39,9 +42,14 @@ class EventsDelegation extends Mixin
       delete eventsForObject[event][selector]
 
       if Object.keys(eventsForObject[event]).length is 0
+        disposablesForObject = @disposablesMap.get(object)
+        disposablesForObject[event].dispose()
+        delete disposablesForObject[event]
         delete eventsForObject[event]
 
-    @eventsMap.delete(object) if Object.keys(eventsForObject).length is 0
+    if Object.keys(eventsForObject).length is 0
+      @eventsMap.delete(object)
+      @disposablesMap.delete(object)
 
   createEventListener: (object, event) ->
     listener = (e) =>
