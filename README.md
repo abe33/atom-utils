@@ -25,24 +25,33 @@ Use it by including it into your custom element:
 {EventsDelegation} = require 'atom-utils'
 
 class DummyNode extends HTMLElement
+  # It includes the mixin on the class prototype.
   EventsDelegation.includeInto(this)
 
+  # Custom element's callback on creation.
   createdCallback: ->
     @appendChild(document.createElement('div'))
     @firstChild.appendChild(document.createElement('span'))
 
-    @subscribeTo this,
+    # Without a target and a selector, it registers to the event on the
+    # element itself.
+    @subscribeTo
       click: (e) ->
         console.log("won't be called if the click is done on the child div")
 
-    @subscribeTo this, 'div',
+    # With just a selector, it registers to the event on the elements children
+    # matching the passed-in selector.
+    @subscribeTo 'div',
       click: (e) ->
         console.log("won't be called if the click is done on the child span")
         e.stopPropagation()
 
-    @subscribeTo this, 'div span',
+    # By passing a node and a selector, it registers to the event on the
+    # elements children matching the passed-in selector.
+    @subscribeTo @firstChild, 'span',
       click: (e) ->
         e.stopPropagation()
 
+# It creates the custom element and register with as the `dummy-node` tag.
 DummyNode = document.registerElement 'dummy-node', prototype: DummyNode.prototype
 ```
