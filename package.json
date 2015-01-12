@@ -20,6 +20,10 @@
     "url": "https://github.com/abe33/atom-utils/issues"
   },
   "homepage": "https://github.com/abe33/atom-utils",
+  "dependencies": {
+    "event-kit": "^1",
+    "mixto": "^1"
+  },
   "devDependencies": {
     "jasmine-focused": "1.x",
     "grunt-contrib-coffee": "~0.7.0",
