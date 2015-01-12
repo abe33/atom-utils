@@ -30,8 +30,8 @@ describe 'EventsDelegation', ->
     beforeEach ->
       rootClickSpy = jasmine.createSpy('root click')
       inputClickSpy = jasmine.createSpy('input click')
-      element.subscribeTo element, click: rootClickSpy
-      element.subscribeTo element, 'input', click: inputClickSpy
+      element.subscribeTo click: rootClickSpy
+      element.subscribeTo 'input', click: inputClickSpy
 
     it 'calls the listener when the element is clicked', ->
       click(element)
@@ -51,8 +51,8 @@ describe 'EventsDelegation', ->
         childClickSpy = jasmine.createSpy('child click')
         childClickSpy2 = jasmine.createSpy('child click 2')
 
-        element.subscribeTo element, 'div', click: childClickSpy
-        element.subscribeTo element, '.foo', click: childClickSpy2
+        element.subscribeTo 'div', click: childClickSpy
+        element.subscribeTo '.foo', click: childClickSpy2
 
         click(childElement)
 
@@ -65,8 +65,8 @@ describe 'EventsDelegation', ->
             e.stopImmediatePropagation()
           childClickSpy2 = jasmine.createSpy('child click 2')
 
-          element.subscribeTo element, 'div', click: childClickSpy
-          element.subscribeTo element, '.foo', click: childClickSpy2
+          element.subscribeTo 'div', click: childClickSpy
+          element.subscribeTo '.foo', click: childClickSpy2
 
           click(childElement)
 
@@ -79,7 +79,7 @@ describe 'EventsDelegation', ->
 
       it 'calls the child listener and the parent listener', ->
         childClickSpy = jasmine.createSpy('child click')
-        element.subscribeTo element, 'div', click: childClickSpy
+        element.subscribeTo 'div', click: childClickSpy
 
         click(childElement)
 
@@ -96,7 +96,7 @@ describe 'EventsDelegation', ->
           childClickSpy = jasmine.createSpy('child click').andCallFake (e) ->
             e.stopPropagation()
 
-          element.subscribeTo element, 'div', click: childClickSpy
+          element.subscribeTo 'div', click: childClickSpy
 
         it 'does not call the parent listener', ->
           click(childElement)
@@ -114,8 +114,8 @@ describe 'EventsDelegation', ->
             childClickSpy = jasmine.createSpy('child click')
             deepChildClickSpy = jasmine.createSpy('deep child click')
 
-            element.subscribeTo element, 'div', click: childClickSpy
-            element.subscribeTo element, 'span', click: deepChildClickSpy
+            element.subscribeTo 'div', click: childClickSpy
+            element.subscribeTo 'span', click: deepChildClickSpy
 
           it 'calls all the listeners', ->
             click(deepChildElement)

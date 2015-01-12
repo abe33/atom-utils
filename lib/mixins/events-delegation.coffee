@@ -8,7 +8,8 @@ NO_SELECTOR = '__NONE__'
 module.exports =
 class EventsDelegation extends Mixin
   subscribeTo: (object, selector, events) ->
-    return unless object?
+    unless object instanceof HTMLElement
+      [object, selector, events] = [this, object, selector]
 
     @eventSubscriptions ?= new CompositeDisposable
     @eventsMap ?= new WeakMap
