@@ -2,7 +2,7 @@
   "name": "atom-utils",
   "version": "0.0.1",
   "description": "A bunch of general purpose utilities for Atom packages",
-  "main": "lib/atom-utils.js",
+  "main": "lib/atom-utils",
   "repository": {
     "type": "git",
     "url": "https://github.com/abe33/atom-utils.git"
@@ -20,15 +20,5 @@
   "dependencies": {
     "event-kit": "^1",
     "mixto": "^1"
-  },
-  "devDependencies": {
-    "jasmine-focused": "1.x",
-    "grunt-contrib-coffee": "~0.7.0",
-    "grunt-cli": "~0.1.8",
-    "grunt": "~0.4.1",
-    "grunt-contrib-watch": "~0.5.3",
-    "grunt-shell": "~0.2.2",
-    "grunt-coffeelint": "0.0.6",
-    "promise": "*"
   }
 }

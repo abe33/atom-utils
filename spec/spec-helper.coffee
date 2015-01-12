@@ -4,8 +4,14 @@ class Package
   constructor: (@name) ->
     @mainModule = {}
 
-global.atom =
-  packages:
-    activatePackage: (packageName) ->
-      new Promise (resolve, reject) ->
-        resolve(new Package(packageName))
+global.mockPackageManager = ->
+  manager = atom.packages
+
+  beforeEach ->
+    atom.packages =
+      activatePackage: (packageName) ->
+        new Promise (resolve, reject) ->
+          resolve(new Package(packageName))
+
+  afterEach ->
+    atom.packages = manager
