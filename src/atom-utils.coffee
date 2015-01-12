@@ -22,3 +22,5 @@ module.exports =
           failures[i] = reason
           solved()
         )
+
+  EventsDelegation: require './mixins/events-delegation'
