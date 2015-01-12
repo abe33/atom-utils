@@ -6,7 +6,7 @@ module.exports = (grunt) ->
       glob_to_multiple:
         expand: true
         cwd: 'src'
-        src: ['*.coffee']
+        src: ['**/*.coffee']
         dest: 'lib'
         ext: '.js'
 
@@ -32,13 +32,6 @@ module.exports = (grunt) ->
         command: 'npm install'
 
     watch:
-      scripts:
-        files: [
-          'src/**/*.coffee'
-          'spec/**/*.coffee'
-        ]
-        tasks: ['test']
-
       config:
         files: ['Gruntfile.coffee']
         options:
@@ -48,6 +41,12 @@ module.exports = (grunt) ->
         files: ['package.json']
         tasks: ['shell:install']
 
+      scripts:
+        files: [
+          'src/**/*.coffee'
+          'spec/**/*.coffee'
+        ]
+        tasks: ['coffee', 'lint']
 
   grunt.loadNpmTasks('grunt-contrib-coffee')
   grunt.loadNpmTasks('grunt-shell')
