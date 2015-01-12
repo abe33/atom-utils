@@ -28,23 +28,24 @@ class EventsDelegation extends Mixin
 
   createEventListener: (object, event) ->
     listener = (e) =>
+      {target} = e
       @decorateEvent(e)
       eventsForObject = @eventsMap.get(object)[event]
 
-      {target} = e
-      found = @eachSelector eventsForObject, (selector,callback) =>
-        if @targetMatch(target, selector)
-          callback(e)
-          return true
-
-        return false
-
+      @eachSelectorFromTarget(e, target, eventsForObject)
       eventsForObject[NO_SELECTOR]?(e) unless e.isPropagationStopped
       return true
 
     object.addEventListener event, listener
     @subscriptions.add new Disposable ->
       object.removeEventListener event, listener
+
+  eachSelectorFromTarget: (event, target, eventsForObject) ->
+    @nodeAndItsAncestors target, (node) =>
+      unless event.isPropagationStopped
+        @eachSelector eventsForObject, (selector,callback) =>
+          if not event.isImmediatePropagationStopped and @targetMatch(node, selector)
+            callback(event)
 
   eachSelector: (eventsForObject, callback) ->
     keys = Object.keys(eventsForObject)
@@ -66,11 +67,24 @@ class EventsDelegation extends Mixin
 
     false
 
+  nodeAndItsAncestors: (node, callback) ->
+    parent = node.parentNode
+
+    callback(node)
+    while parent? and parent.matches?
+      callback(parent)
+      parent = parent.parentNode
+
   decorateEvent: (e) ->
     overriddenStop =  Event::stopPropagation
     e.stopPropagation = ->
       @isPropagationStopped = true
       overriddenStop.apply(this, arguments)
+
+    overriddenStopImmediate =  Event::stopImmediatePropagation
+    e.stopImmediatePropagation = ->
+      @isImmediatePropagationStopped = true
+      overriddenStopImmediate.apply(this, arguments)
 
   addEventDisposable: (object, event, listener) ->
     object.addEventListener event, listener
