@@ -17,7 +17,7 @@ class DummyNode extends HTMLElement
 DummyNode = document.registerElement 'dummy-node', prototype: DummyNode.prototype
 
 describe 'EventsDelegation', ->
-  [element, jasmineContent, rootClickSpy, childClickSpy, childClickSpy2, inputClickSpy, childElement] = []
+  [element, jasmineContent, rootClickSpy, childClickSpy, childClickSpy2, inputClickSpy, childElement, rootDisposable, inputDisposable] = []
 
   beforeEach ->
     jasmineContent = document.body.querySelector('#jasmine-content')
@@ -30,8 +30,8 @@ describe 'EventsDelegation', ->
     beforeEach ->
       rootClickSpy = jasmine.createSpy('root click')
       inputClickSpy = jasmine.createSpy('input click')
-      element.subscribeTo click: rootClickSpy
-      element.subscribeTo 'input', click: inputClickSpy
+      rootDisposable = element.subscribeTo click: rootClickSpy
+      inputDisposable = element.subscribeTo 'input', click: inputClickSpy
 
     it 'calls the listener when the element is clicked', ->
       click(element)
@@ -42,6 +42,32 @@ describe 'EventsDelegation', ->
       click(element)
 
       expect(inputClickSpy).not.toHaveBeenCalled()
+
+    it 'returns a disposable that can be used to unsubscribe from the events', ->
+      expect(rootDisposable).toBeDefined()
+      expect(inputDisposable).toBeDefined()
+
+      rootDisposable.dispose()
+
+      click(element)
+      expect(rootClickSpy).not.toHaveBeenCalled()
+
+      inputDisposable.dispose()
+
+      click(element.querySelector('input'))
+      expect(inputClickSpy).not.toHaveBeenCalled()
+
+    it 'clean up the object listeners when there is no more listeners', ->
+      expect(Object.keys(element.eventsMap.get(element)['click']).length).toEqual(2)
+
+      rootDisposable.dispose()
+
+      expect(Object.keys(element.eventsMap.get(element)).length).toEqual(1)
+      expect(Object.keys(element.eventsMap.get(element)['click']).length).toEqual(1)
+
+      inputDisposable.dispose()
+
+      expect(element.eventsMap.get(element)).toBeUndefined()
 
     describe 'when two selectors matches the same node', ->
       beforeEach ->

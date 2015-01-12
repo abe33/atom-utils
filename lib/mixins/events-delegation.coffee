@@ -11,27 +11,44 @@ class EventsDelegation extends Mixin
     unless object instanceof HTMLElement
       [object, selector, events] = [this, object, selector]
 
-    @eventSubscriptions ?= new CompositeDisposable
+    [events, selector] = [selector, NO_SELECTOR] if typeof selector is 'object'
+
     @eventsMap ?= new WeakMap
     @eventsMap.set(object, {}) unless @eventsMap.get(object)?
 
     eventsForObject = @eventsMap.get(object)
 
-    [events, selector] = [selector, null] if typeof selector is 'object'
-    selector = NO_SELECTOR unless selector?
-
     eachPair events, (event, callback) =>
       unless eventsForObject[event]?
         eventsForObject[event] = {}
-        @eventSubscriptions.add @createEventListener(object, event)
+        @createEventListener(object, event)
 
       eventsForObject[event][selector] = callback
 
+    new Disposable => @unsubscribeFrom object, selector, events
+
+  unsubscribeFrom: (object, selector, events) ->
+    unless object instanceof HTMLElement
+      [object, selector, events] = [this, object, selector]
+
+    [events, selector] = [selector, NO_SELECTOR] if typeof selector is 'object'
+
+    return unless eventsForObject = @eventsMap.get(object)
+
+    for event of events
+      delete eventsForObject[event][selector]
+
+      if Object.keys(eventsForObject[event]).length is 0
+        delete eventsForObject[event]
+
+    @eventsMap.delete(object) if Object.keys(eventsForObject).length is 0
+
   createEventListener: (object, event) ->
     listener = (e) =>
+      return unless eventsForObject = @eventsMap.get(object)?[event]
+
       {target} = e
       @decorateEvent(e)
-      eventsForObject = @eventsMap.get(object)[event]
 
       @eachSelectorFromTarget(e, target, eventsForObject)
       eventsForObject[NO_SELECTOR]?(e) unless e.isPropagationStopped
@@ -43,7 +60,8 @@ class EventsDelegation extends Mixin
     @nodeAndItsAncestors target, (node) =>
       return if event.isPropagationStopped
       @eachSelector eventsForObject, (selector,callback) =>
-        return if event.isImmediatePropagationStopped or not @targetMatch(node, selector)
+        matched = @targetMatch(node, selector)
+        return if event.isImmediatePropagationStopped or not matched
         callback(event)
 
   eachSelector: (eventsForObject, callback) ->
