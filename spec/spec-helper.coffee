@@ -1,5 +1,3 @@
-global.Promise = require 'promise'
-
 class Package
   constructor: (@name) ->
     @mainModule = {}
