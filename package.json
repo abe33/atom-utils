@@ -3,9 +3,6 @@
   "version": "0.0.1",
   "description": "A bunch of general purpose utilities for Atom packages",
   "main": "lib/atom-utils.js",
-  "scripts": {
-    "test": "./node_modules/.bin/grunt test "
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/abe33/atom-utils.git"
