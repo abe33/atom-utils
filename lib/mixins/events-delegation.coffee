@@ -10,7 +10,7 @@ class EventsDelegation extends Mixin
   subscribeTo: (object, selector, events) ->
     return unless object?
 
-    @subscriptions ?= new CompositeDisposable
+    @eventSubscriptions ?= new CompositeDisposable
     @eventsMap ?= new WeakMap
     @eventsMap.set(object, {}) unless @eventsMap.get(object)?
 
@@ -22,7 +22,7 @@ class EventsDelegation extends Mixin
     eachPair events, (event, callback) =>
       unless eventsForObject[event]?
         eventsForObject[event] = {}
-        @createEventListener(object, event)
+        @eventSubscriptions.add @createEventListener(object, event)
 
       eventsForObject[event][selector] = callback
 
@@ -36,9 +36,7 @@ class EventsDelegation extends Mixin
       eventsForObject[NO_SELECTOR]?(e) unless e.isPropagationStopped
       return true
 
-    object.addEventListener event, listener
-    @subscriptions.add new Disposable ->
-      object.removeEventListener event, listener
+    @addDisposableEventListener object, event, listener
 
   eachSelectorFromTarget: (event, target, eventsForObject) ->
     @nodeAndItsAncestors target, (node) =>
@@ -86,6 +84,6 @@ class EventsDelegation extends Mixin
       @isImmediatePropagationStopped = true
       overriddenStopImmediate.apply(this, arguments)
 
-  addEventDisposable: (object, event, listener) ->
+  addDisposableEventListener: (object, event, listener) ->
     object.addEventListener event, listener
     new Disposable -> object.removeEventListener event, listener
