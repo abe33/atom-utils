@@ -1,3 +1,10 @@
+<a name="v0.1.2"></a>
+# v0.1.2 (2015-01-13)
+
+## :bug: Bug Fixes
+
+- Revert to compiled version with grunt ([a5d5f49c](https://github.com/abe33/atom-utils/commit/a5d5f49c147c49ecec8ab886319afce36b76157b))
+
 <a name="v0.1.1"></a>
 # v0.1.1 (2015-01-12)
 
