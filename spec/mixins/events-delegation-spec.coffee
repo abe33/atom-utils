@@ -1,4 +1,4 @@
-{EventsDelegation} = require '../../lib/atom-utils'
+{EventsDelegation} = require '../../src/atom-utils'
 {click} = require '../helpers/events'
 
 class DummyNode extends HTMLElement
