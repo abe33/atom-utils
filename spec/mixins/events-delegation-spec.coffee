@@ -1,28 +1,29 @@
 {EventsDelegation} = require '../../src/atom-utils'
 {click} = require '../helpers/events'
 
-class DummyNode extends HTMLElement
-  EventsDelegation.includeInto(this)
-
-  createdCallback: ->
-    @initializeContent()
-
-  initializeContent: ->
-    @appendChild(document.createElement('div'))
-    @firstChild.className = 'foo'
-
-    @firstChild.appendChild(document.createElement('span'))
-    @appendChild(document.createElement('input'))
-
-DummyNode = document.registerElement 'dummy-node', prototype: DummyNode.prototype
 
 describe 'EventsDelegation', ->
-  [element, jasmineContent, rootClickSpy, childClickSpy, childClickSpy2, inputClickSpy, childElement, rootDisposable, inputDisposable] = []
+  [element, jasmineContent, rootClickSpy, childClickSpy, childClickSpy2, inputClickSpy, childElement, rootDisposable, inputDisposable, DummyElement] = []
+
+  class DummyElement extends HTMLElement
+    EventsDelegation.includeInto(this)
+
+    createdCallback: ->
+      @initializeContent()
+
+    initializeContent: ->
+      @appendChild(document.createElement('div'))
+      @firstChild.className = 'foo'
+
+      @firstChild.appendChild(document.createElement('span'))
+      @appendChild(document.createElement('input'))
+
+  DummyElement = document.registerElement 'dummy-element-events', prototype: DummyElement.prototype
 
   beforeEach ->
     jasmineContent = document.body.querySelector('#jasmine-content')
 
-    element = new DummyNode
+    element = new DummyElement
 
     jasmineContent.appendChild(element)
 

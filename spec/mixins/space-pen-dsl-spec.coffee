@@ -1,19 +1,19 @@
-SpacePenDSL = require '../../src/mixins/space-pen-dsl'
-
-class DummyElement extends HTMLElement
-  SpacePenDSL.includeInto(this)
-
-  @content: ->
-    @div outlet: 'main', class: 'foo', =>
-      @tag 'span', outlet: 'span', class: 'bar'
-
-  createdCallback: ->
-    @created = true
-
-DummyElement = document.registerElement 'dummy-element', prototype: DummyElement.prototype
+{SpacePenDSL} = require '../../src/atom-utils'
 
 describe 'space-pen DSL', ->
-  [element] = []
+  [element, DummyElement] = []
+
+  class DummyElement extends HTMLElement
+    SpacePenDSL.includeInto(this)
+
+    @content: ->
+      @div outlet: 'main', class: 'foo', =>
+        @tag 'span', outlet: 'span', class: 'bar'
+
+    createdCallback: ->
+      @created = true
+
+  DummyElement = document.registerElement 'dummy-element-dsl', prototype: DummyElement.prototype
 
   beforeEach ->
     element = new DummyElement
