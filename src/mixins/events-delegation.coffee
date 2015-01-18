@@ -1,12 +1,14 @@
 Mixin = require 'mixto'
+DisposableEvents = require './disposable-events'
 {Disposable, CompositeDisposable} = require 'event-kit'
-
 eachPair = (object, callback) -> callback(k,v) for k,v of object
 
 NO_SELECTOR = '__NONE__'
 
 module.exports =
 class EventsDelegation extends Mixin
+  DisposableEvents.includeInto(this)
+
   subscribeTo: (object, selector, events) ->
     unless object instanceof HTMLElement
       [object, selector, events] = [this, object, selector]
@@ -110,7 +112,3 @@ class EventsDelegation extends Mixin
     e.stopImmediatePropagation = ->
       @isImmediatePropagationStopped = true
       overriddenStopImmediate.apply(this, arguments)
-
-  addDisposableEventListener: (object, event, listener) ->
-    object.addEventListener event, listener
-    new Disposable -> object.removeEventListener event, listener
