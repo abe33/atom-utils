@@ -25,3 +25,4 @@ module.exports =
 
   EventsDelegation: require './mixins/events-delegation'
   DisposableEvents: require './mixins/disposable-events'
+  SpacePenDSL: require './mixins/space-pen-dsl'
