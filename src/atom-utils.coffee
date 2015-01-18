@@ -3,7 +3,6 @@ module.exports =
   requirePackages: (packages...) ->
     new Promise (resolve, reject) ->
       required = []
-      promises = []
       failures = []
       remains = packages.length
 
@@ -14,14 +13,13 @@ module.exports =
         resolve(required)
 
       packages.forEach (pkg, i) ->
-        promises.push(atom.packages.activatePackage(pkg)
+        atom.packages.activatePackage(pkg)
         .then (activatedPackage) ->
           required[i] = activatedPackage.mainModule
           solved()
         .fail (reason) ->
           failures[i] = reason
           solved()
-        )
 
   AncestorsMethods: require './mixins/ancestors-methods'
   DisposableEvents: require './mixins/disposable-events'
