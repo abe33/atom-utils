@@ -1,3 +1,10 @@
+<a name="v0.2.0"></a>
+# v0.2.0 (2015-01-18)
+
+## :sparkles: Features
+
+- Add space-pen DSL mixing for custom elements ([2a6a7933](https://github.com/abe33/atom-utils/commit/2a6a79330b6dfe18cb41b270a1a789c38094fcc6))
+
 <a name="v0.1.2"></a>
 # v0.1.2 (2015-01-13)
 
