@@ -23,6 +23,7 @@ module.exports =
           solved()
         )
 
-  EventsDelegation: require './mixins/events-delegation'
+  AncestorsMethods: require './mixins/ancestors-methods'
   DisposableEvents: require './mixins/disposable-events'
+  EventsDelegation: require './mixins/events-delegation'
   SpacePenDSL: require './mixins/space-pen-dsl'
