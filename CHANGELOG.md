@@ -1,3 +1,11 @@
+<a name="v0.4.0"></a>
+# v0.4.0 (2015-01-19)
+
+## :sparkles: Features
+
+- Add class methods to traverse parents of arbitrary nodes ([ad46fc59](https://github.com/abe33/atom-utils/commit/ad46fc59dcaf9fa505a21c8c9f138ccbb84795fb))
+
+
 <a name="v0.3.1"></a>
 # v0.3.1 (2015-01-19)
 
