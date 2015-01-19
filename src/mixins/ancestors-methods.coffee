@@ -4,7 +4,7 @@ module.exports =
 class AncestorsMethods extends Mixin
   @parents: (node, selector='*') ->
     parents = []
-    @eachParent (parent) -> parents.push(parent) if parent.matches?(selector)
+    @eachParent node, (parent) -> parents.push(parent) if parent.matches?(selector)
     parents
 
   @eachParent: (node, block) ->
