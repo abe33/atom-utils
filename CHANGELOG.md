@@ -1,3 +1,11 @@
+<a name="v0.4.3"></a>
+# v0.4.3 (2015-01-19)
+
+## :bug: Bug Fixes
+
+- Fix broken ancestor method ([ec99f409](https://github.com/abe33/atom-utils/commit/ec99f409edd505a0db0b88c26b1167b42a39ad2f))
+
+
 <a name="v0.4.0"></a>
 # v0.4.0 (2015-01-19)
 
