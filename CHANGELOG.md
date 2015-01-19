@@ -1,3 +1,11 @@
+<a name="v0.3.1"></a>
+# v0.3.1 (2015-01-19)
+
+## :bug: Bug Fixes
+
+- Fix missing files in latest release
+
+
 <a name="v0.3.0"></a>
 # v0.3.0 (2015-01-19)
 
