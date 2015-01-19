@@ -16,6 +16,48 @@ requirePackages('tree-view', 'find-and-replace', 'snippets')
   # Do something with the required packages
 ```
 
+### AncestorsMethods
+
+A mixin that provides jQuery a like method to retrieve a node's parents:
+
+```coffee
+{AncestorsMethods} = require 'atom-utils'
+
+class DummyNode extends HTMLElement
+  AncestorsMethods.includeInto(this)
+
+  attachedCallback: ->
+    # Returns all the ancestors to the html element
+    parents = @parents()
+
+    # Returns all the ancestors that matches the selector
+    filteredParents = @parents('selector')
+
+# It creates the custom element and register with as the `dummy-node` tag.
+DummyNode = document.registerElement 'dummy-node', prototype: DummyNode.prototype
+```
+
+### DisposableEvents
+
+A mixin that provides a `addDisposableEventListener` method that registers an event listener on an element and returns a `Disposable` to unregister it:
+
+```coffee
+{DisposableEvents} = require 'atom-utils'
+{CompositeDisposable} = require 'event-kit'
+
+class DummyNode extends HTMLElement
+  DisposableEvents.includeInto(this)
+
+  createdCallback: ->
+    @subscriptions = new CompositeDisposable
+
+    @subscriptions.add @addDisposableEventListener this, 'click', (e) =>
+      # ...
+
+# It creates the custom element and register with as the `dummy-node` tag.
+DummyNode = document.registerElement 'dummy-node', prototype: DummyNode.prototype
+```
+
 ### EventsDelegation
 
 A mixin that provides events delegation ala jQuery without jQuery.
@@ -58,6 +100,27 @@ class DummyNode extends HTMLElement
     @subscriptions.add @subscribeTo @firstChild, 'span',
       click: (e) ->
         e.stopPropagation()
+
+# It creates the custom element and register with as the `dummy-node` tag.
+DummyNode = document.registerElement 'dummy-node', prototype: DummyNode.prototype
+```
+
+### SpacePenDSL
+
+A mixin that provides the same content creation mechanism as `space-pen` but for custom elements:
+
+```coffee
+{SpacePenDSL} = require 'atom-utils'
+
+class DummyNode extends HTMLElement
+  SpacePenDSL.includeInto(this)
+
+  @content: ->
+    @div outlet: 'container', class: 'container', =>
+      @span outlet: 'label', class: 'label'
+
+  createdCallback: ->
+    # Content is available in the created callback
 
 # It creates the custom element and register with as the `dummy-node` tag.
 DummyNode = document.registerElement 'dummy-node', prototype: DummyNode.prototype

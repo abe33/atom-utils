@@ -1,3 +1,10 @@
+<a name="v0.3.0"></a>
+# v0.3.0 (2015-01-19)
+
+## :sparkles: Features
+
+- Add a mixin to traverse ancestor nodes ([c9085f60](https://github.com/abe33/atom-utils/commit/c9085f60ffda4d81966a87c76ff6a7c6294bb355))
+
 <a name="v0.2.0"></a>
 # v0.2.0 (2015-01-18)
 

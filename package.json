@@ -1,6 +1,6 @@
 {
   "name": "atom-utils",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A bunch of general purpose utilities for Atom packages",
   "main": "lib/atom-utils.js",
   "repository": {
