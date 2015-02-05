@@ -105,6 +105,32 @@ class DummyNode extends HTMLElement
 DummyNode = document.registerElement 'dummy-node', prototype: DummyNode.prototype
 ```
 
+### ResizeDetection
+
+As their is no standard way to detect when an element size changed this mixin provides a DOM polling mechanism to custom element whose display and logic may rely on the element size:
+
+```coffee
+{ResizeDetection} = require 'atom-utils'
+
+class DummyNode extends HTMLElement
+  ResizeDetection.includeInto(this)
+
+  # Starts the DOM poll when the element is attached
+  attachedCallback: -> @initializeDOMPolling()
+
+  # Stops the DOM poll when the element is detached
+  detachedCallback: -> @disposeDOMPolling()
+
+  # Callback called when the poll routine has detected a size change.
+  # The callback receive the new width and height as arguments.
+  resizeDetected: (width, height) ->
+
+  # If you need to prevent the poll routine to check the element size,
+  # redefine this method with your own conditions. The function should return
+  # false when the polling can occurs.
+  # isDOMPollingPrevented: -> @domPollingPaused
+```
+
 ### SpacePenDSL
 
 A mixin that provides the same content creation mechanism as `space-pen` but for custom elements:
