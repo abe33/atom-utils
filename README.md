@@ -107,7 +107,7 @@ DummyNode = document.registerElement 'dummy-node', prototype: DummyNode.prototyp
 
 ### ResizeDetection
 
-As their is no standard way to detect when an element size changed this mixin provides a DOM polling mechanism to custom element whose display and logic may rely on the element size:
+As there is no standard way to detect when an element size changed this mixin provides a DOM polling mechanism to custom element whose display and logic may rely on the element size:
 
 ```coffee
 {ResizeDetection} = require 'atom-utils'
@@ -130,6 +130,8 @@ class DummyNode extends HTMLElement
   # false when the polling can occurs.
   # isDOMPollingPrevented: -> @domPollingPaused
 ```
+
+If you need to suspend the polling while keeping the interval active you can use the `pauseDOMPolling` to pause the polling routine and `resumeDOMPolling` to resume it.
 
 ### SpacePenDSL
 
