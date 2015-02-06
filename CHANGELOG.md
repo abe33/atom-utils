@@ -1,3 +1,11 @@
+<a name="v0.5.0"></a>
+# v0.5.0 (2015-02-05)
+
+## :sparkles: Features
+
+- Add a mixin to implement DOM polling for size change detection ([d17f4d3d](https://github.com/abe33/atom-utils/commit/d17f4d3db478cda6ed0b6a2b5d35a6365e70f275))
+- Add parent methods like querySelector and querySelectorAll ([82d8b8f1](https://github.com/abe33/atom-utils/commit/82d8b8f13304acd503d068993090b561373b2b35))
+
 <a name="v0.4.3"></a>
 # v0.4.3 (2015-01-19)
 
