@@ -33,7 +33,7 @@ class DummyNode extends HTMLElement
     # Returns all the ancestors that matches the selector
     filteredParents = @parents('selector')
 
-# It creates the custom element and register with as the `dummy-node` tag.
+# It creates the custom element and register it as the `dummy-node` tag.
 DummyNode = document.registerElement 'dummy-node', prototype: DummyNode.prototype
 ```
 
@@ -54,7 +54,7 @@ class DummyNode extends HTMLElement
     @subscriptions.add @addDisposableEventListener this, 'click', (e) =>
       # ...
 
-# It creates the custom element and register with as the `dummy-node` tag.
+# It creates the custom element and register it as the `dummy-node` tag.
 DummyNode = document.registerElement 'dummy-node', prototype: DummyNode.prototype
 ```
 
@@ -101,7 +101,7 @@ class DummyNode extends HTMLElement
       click: (e) ->
         e.stopPropagation()
 
-# It creates the custom element and register with as the `dummy-node` tag.
+# It creates the custom element and register it as the `dummy-node` tag.
 DummyNode = document.registerElement 'dummy-node', prototype: DummyNode.prototype
 ```
 
@@ -122,6 +122,6 @@ class DummyNode extends HTMLElement
   createdCallback: ->
     # Content is available in the created callback
 
-# It creates the custom element and register with as the `dummy-node` tag.
+# It creates the custom element and register it as the `dummy-node` tag.
 DummyNode = document.registerElement 'dummy-node', prototype: DummyNode.prototype
 ```
