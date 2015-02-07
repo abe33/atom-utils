@@ -16,15 +16,15 @@ requirePackages('tree-view', 'find-and-replace', 'snippets')
   # Do something with the required packages
 ```
 
-### AncestorsMethods
+### Ancestors (previously AncestorsMethods)
 
 A mixin that provides jQuery a like method to retrieve a node's parents:
 
 ```coffee
-{AncestorsMethods} = require 'atom-utils'
+{Ancestors} = require 'atom-utils'
 
 class DummyNode extends HTMLElement
-  AncestorsMethods.includeInto(this)
+  Ancestors.includeInto(this)
 
   attachedCallback: ->
     # Returns all the ancestors to the html element
@@ -36,6 +36,31 @@ class DummyNode extends HTMLElement
 # It creates the custom element and register it as the `dummy-node` tag.
 DummyNode = document.registerElement 'dummy-node', prototype: DummyNode.prototype
 ```
+
+#### ::parents(selector='*')
+
+Can be called with or without the selector argument.
+
+If called without argument, the method will return every parents of the current
+node.
+
+If called with an argument, the method will return only the parent elements that match the passed-in selector.
+
+Parents in the returned array are sorted by their distance from the node.
+
+#### ::queryParentSelectorAll(selector)
+
+An alias of `::parents` except it throw an error if called without a selector.
+
+#### ::queryParentSelector(selector)
+
+Returns only the first parent element that matches the passed-in selector.
+
+Throws an error when called without a selector.
+
+### ::eachParent(iterator)
+
+Iterates over each parent the node and calls `iterator` with the current parent node.
 
 ### DisposableEvents
 

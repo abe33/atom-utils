@@ -21,6 +21,7 @@ module.exports =
           failures[i] = reason
           solved()
 
+  Ancestors: require './mixins/ancestors-methods'
   AncestorsMethods: require './mixins/ancestors-methods'
   DisposableEvents: require './mixins/disposable-events'
   EventsDelegation: require './mixins/events-delegation'

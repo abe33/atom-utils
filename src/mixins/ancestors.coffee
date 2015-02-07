@@ -1,7 +1,11 @@
 Mixin = require 'mixto'
 
+# Public
 module.exports =
-class AncestorsMethods extends Mixin
+class Ancestors extends Mixin
+
+  ### Public ###
+
   @parents: (node, selector='*') ->
     parents = []
     @eachParent node, (parent) -> parents.push(parent) if parent.matches?(selector)
@@ -14,7 +18,7 @@ class AncestorsMethods extends Mixin
     while parent = parent.parentNode
       block(parent) if parent?
 
-  parents: (selector='*') -> AncestorsMethods.parents(this, selector)
+  parents: (selector='*') -> Ancestors.parents(this, selector)
 
   queryParentSelectorAll: (selector) ->
     unless selector?
@@ -26,4 +30,4 @@ class AncestorsMethods extends Mixin
       throw new Error '::queryParentSelector requires a valid selector as argument'
     @queryParentSelectorAll(selector)[0]
 
-  eachParent: (block) -> AncestorsMethods.eachParent(this, block)
+  eachParent: (block) -> Ancestors.eachParent(this, block)

@@ -1,10 +1,10 @@
-{AncestorsMethods} = require '../../src/atom-utils'
+{Ancestors} = require '../../src/atom-utils'
 
-describe 'AncestorsMethods mixin', ->
+describe 'Ancestors mixin', ->
   [element, jasmineContent, DummyElement] = []
 
   class DummyElement extends HTMLElement
-    AncestorsMethods.includeInto(this)
+    Ancestors.includeInto(this)
 
   DummyElement = document.registerElement 'dummy-element-ancestors', prototype: DummyElement.prototype
 
