@@ -1,3 +1,14 @@
+<a name="v0.6.0"></a>
+# v0.6.0 (2015-06-29)
+
+## :sparkles: Features
+
+- Add support for shadow DOM in space pen DSL ([94946815](https://github.com/abe33/atom-utils/commit/9494681549fcfce9a4019b991b446f7086608e4b))
+
+## :bug: Bug Fixes
+
+- Fix require of ancestors mixin ([9216e955](https://github.com/abe33/atom-utils/commit/9216e95558bc34e71e0dd8f673e295445c795c61))
+
 <a name="v0.5.0"></a>
 # v0.5.0 (2015-02-05)
 
