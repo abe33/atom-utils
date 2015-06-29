@@ -57,3 +57,7 @@ describe 'space-pen DSL', ->
     it 'creates a DOM structure based on the @content method', ->
       expect(element.shadowRoot.querySelector('div')).toExist()
       expect(element.shadowRoot.querySelector('div span')).toExist()
+
+    it 'creates a property for each outlet', ->
+      expect(element.main).toEqual(element.shadowRoot.querySelector('div'))
+      expect(element.span).toEqual(element.shadowRoot.querySelector('div span'))

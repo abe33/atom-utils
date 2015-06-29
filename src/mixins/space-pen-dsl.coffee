@@ -51,16 +51,17 @@ class SpacePenDSL extends Mixin
     content.call(template)
 
     [html] = template.buildHtml()
+    root =
     if element.__useShadowRoot__
-      element.shadowRoot = element.createShadowRoot()
-      element.shadowRoot.innerHTML = html
+      root = element.shadowRoot = element.createShadowRoot()
     else
-      element.innerHTML = html
+      root = element
+    root.innerHTML = html
 
-    @wireOutlets(element)
+    @wireOutlets(element, root)
 
-  @wireOutlets: (view) ->
-    for element in view.querySelectorAll('[outlet]')
+  @wireOutlets: (view, root) ->
+    for element in root.querySelectorAll('[outlet]')
       outlet = element.getAttribute('outlet')
       view[outlet] = element
       element.removeAttribute('outlet')
