@@ -1,3 +1,10 @@
+<a name="v0.6.2"></a>
+# v0.6.2 (2015-06-29)
+
+## :bug: Bug Fixes
+
+- Fix outlet not supported with shadow DOM ([ecbf3bd2](https://github.com/abe33/atom-utils/commit/ecbf3bd2d22554da4eda7eb5712a79031fad8de8))
+
 <a name="v0.6.0"></a>
 # v0.6.0 (2015-06-29)
 
