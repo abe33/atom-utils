@@ -41,13 +41,21 @@ class SpacePenDSL extends Mixin
 
         do @__createdCallback__ if @__createdCallback__?
 
+    klass.useShadowRoot = ->
+      klass::__useShadowRoot__ = true
+
+
   @buildContent: (element, content) ->
     template = new Template
 
     content.call(template)
 
     [html] = template.buildHtml()
-    element.innerHTML = html
+    if element.__useShadowRoot__
+      element.shadowRoot = element.createShadowRoot()
+      element.shadowRoot.innerHTML = html
+    else
+      element.innerHTML = html
 
     @wireOutlets(element)
 

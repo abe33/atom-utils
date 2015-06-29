@@ -32,3 +32,28 @@ describe 'space-pen DSL', ->
   it 'sets the proper attribtues on created elements', ->
     expect(element.main.className).toEqual('foo')
     expect(element.span.className).toEqual('bar')
+
+  describe 'with shadow root enabled', ->
+    class ShadowDummyElement extends HTMLElement
+      SpacePenDSL.includeInto(this)
+
+      @useShadowRoot()
+
+      @content: ->
+        @div outlet: 'main', class: 'foo', =>
+          @tag 'span', outlet: 'span', class: 'bar'
+
+      createdCallback: ->
+        @created = true
+
+    ShadowDummyElement = document.registerElement 'shadow-dummy-element-dsl', prototype: ShadowDummyElement.prototype
+
+    beforeEach ->
+      element = new ShadowDummyElement
+
+    it 'creates a shadow root for the element', ->
+      expect(element.shadowRoot).toBeDefined()
+
+    it 'creates a DOM structure based on the @content method', ->
+      expect(element.shadowRoot.querySelector('div')).toExist()
+      expect(element.shadowRoot.querySelector('div span')).toExist()
