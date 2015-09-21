@@ -13,13 +13,19 @@ module.exports =
         resolve(required)
 
       packages.forEach (pkg, i) ->
-        atom.packages.activatePackage(pkg)
+        failHandler = (reason) ->
+          failures[i] = reason
+          solved()
+
+        promise = atom.packages.activatePackage(pkg)
         .then (activatedPackage) ->
           required[i] = activatedPackage.mainModule
           solved()
-        .fail (reason) ->
-          failures[i] = reason
-          solved()
+
+        if promise.fail?
+          promise.fail(failHandler)
+        else if promise.catch?
+          promise.catch(failHandler)
 
   Ancestors: require './mixins/ancestors'
   AncestorsMethods: require './mixins/ancestors'
