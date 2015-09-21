@@ -1,3 +1,10 @@
+<a name="v0.6.3"></a>
+# v0.6.3 (2015-09-21)
+
+## :bug: Bug Fixes
+
+- Fix error when package promise is a native one ([750913d9](https://github.com/abe33/atom-utils/commit/750913d93c570d8887414e3ffe67a55198a2f0ab), [#2](https://github.com/abe33/atom-utils/issues/2))
+
 <a name="v0.6.2"></a>
 # v0.6.2 (2015-06-29)
 
