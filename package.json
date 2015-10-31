@@ -19,7 +19,8 @@
   "homepage": "https://github.com/abe33/atom-utils",
   "dependencies": {
     "event-kit": "^1",
-    "mixto": "^1"
+    "mixto": "^1",
+    "grim": "^2"
   },
   "devDependencies": {
     "jasmine-focused": "1.x",

@@ -1,4 +1,5 @@
 Mixin = require 'mixto'
+{deprecate} = require 'grim'
 
 debounce = (func, wait, immediate) ->
   timeout = undefined
@@ -17,6 +18,10 @@ debounce = (func, wait, immediate) ->
 
 module.exports =
 class ResizeDetection extends Mixin
+  @includeInto: (cls) ->
+    deprecate("ResizeDetection will be removed in future version. Use atom.views.pollDocument instead.")
+    Mixin.includeInto.call(this, cls)
+
   domPollingInterval: 100
   domPollingIntervalId: undefined
   domPollingPaused: false
