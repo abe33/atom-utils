@@ -19,7 +19,8 @@ debounce = (func, wait, immediate) ->
 module.exports =
 class ResizeDetection extends Mixin
   @includeInto: (cls) ->
-    deprecate("ResizeDetection will be removed in future version. Use atom.views.pollDocument instead.")
+    unless atom.inSpecMode()
+      deprecate("ResizeDetection will be removed in future version. Use atom.views.pollDocument instead.")
     Mixin.includeInto.call(this, cls)
 
   domPollingInterval: 100
