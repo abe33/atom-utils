@@ -1,3 +1,10 @@
+<a name="v0.7.1"></a>
+# v0.7.1 (2015-11-01)
+
+## Other
+
+Javascript files were not properly published along with the new version.
+
 <a name="v0.7.0"></a>
 # v0.7.0 (2015-11-01)
 
