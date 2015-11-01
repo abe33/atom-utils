@@ -27,6 +27,7 @@ module.exports =
         else if promise.catch?
           promise.catch(failHandler)
 
+  registerOrUpdateElement: require './register-or-update-element'
   Ancestors: require './mixins/ancestors'
   AncestorsMethods: require './mixins/ancestors'
   DisposableEvents: require './mixins/disposable-events'
