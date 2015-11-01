@@ -1,4 +1,4 @@
-{EventsDelegation} = require '../../src/atom-utils'
+{EventsDelegation, registerOrUpdateElement} = require '../../src/atom-utils'
 {click} = require '../helpers/events'
 
 
@@ -18,7 +18,7 @@ describe 'EventsDelegation', ->
       @firstChild.appendChild(document.createElement('span'))
       @appendChild(document.createElement('input'))
 
-  DummyElement = document.registerElement 'dummy-element-events', prototype: DummyElement.prototype
+  DummyElement = registerOrUpdateElement 'dummy-element-events', DummyElement.prototype
 
   beforeEach ->
     jasmineContent = document.body.querySelector('#jasmine-content')

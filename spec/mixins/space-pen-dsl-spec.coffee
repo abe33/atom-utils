@@ -1,4 +1,4 @@
-{SpacePenDSL} = require '../../src/atom-utils'
+{SpacePenDSL, registerOrUpdateElement} = require '../../src/atom-utils'
 
 describe 'space-pen DSL', ->
   [element, DummyElement] = []
@@ -13,7 +13,7 @@ describe 'space-pen DSL', ->
     createdCallback: ->
       @created = true
 
-  DummyElement = document.registerElement 'dummy-element-dsl', prototype: DummyElement.prototype
+  DummyElement = registerOrUpdateElement 'dummy-element-dsl', DummyElement.prototype
 
   beforeEach ->
     element = new DummyElement
@@ -46,7 +46,7 @@ describe 'space-pen DSL', ->
       createdCallback: ->
         @created = true
 
-    ShadowDummyElement = document.registerElement 'shadow-dummy-element-dsl', prototype: ShadowDummyElement.prototype
+    ShadowDummyElement = registerOrUpdateElement 'shadow-dummy-element-dsl', ShadowDummyElement.prototype
 
     beforeEach ->
       element = new ShadowDummyElement

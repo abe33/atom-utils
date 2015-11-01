@@ -1,4 +1,4 @@
-{Ancestors} = require '../../src/atom-utils'
+{registerOrUpdateElement, Ancestors} = require '../../src/atom-utils'
 
 describe 'Ancestors mixin', ->
   [element, jasmineContent, DummyElement] = []
@@ -6,7 +6,7 @@ describe 'Ancestors mixin', ->
   class DummyElement extends HTMLElement
     Ancestors.includeInto(this)
 
-  DummyElement = document.registerElement 'dummy-element-ancestors', prototype: DummyElement.prototype
+  DummyElement = registerOrUpdateElement 'dummy-element-ancestors', DummyElement.prototype
 
   beforeEach ->
     jasmineContent = document.body.querySelector('#jasmine-content')

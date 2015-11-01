@@ -30,12 +30,12 @@ class SpacePenDSL extends Mixin
       set: (value) -> @prototype.__content__ = value
 
     Object.defineProperty klass::, 'createdCallback',
-      enumerable: false
+      enumerable: true
       get: -> @__create__
       set: (value) -> @__createdCallback__ = value
 
     Object.defineProperty klass::, '__create__',
-      enumerable: false
+      enumerable: true
       value: ->
         SpacePenDSL.buildContent(this, @__content__) if @__content__?
 
