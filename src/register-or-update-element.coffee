@@ -6,7 +6,6 @@ decorateElementPrototype = (target, source) ->
     return if k is 'constructor'
 
     descriptor = Object.getOwnPropertyDescriptor(source, k)
-    console.log k, descriptor
     if callbackProperties.indexOf(k) > -1
       Object.defineProperty target, k, {
         value: -> @["__#{k}"].apply(this, arguments)
