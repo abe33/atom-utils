@@ -1,3 +1,10 @@
+<a name="v0.7.4"></a>
+# v0.7.4 (2015-11-01)
+
+## Other
+
+Remove logs in `registerOrUpdateElement` function.
+
 <a name="v0.7.3"></a>
 # v0.7.3 (2015-11-01)
 
