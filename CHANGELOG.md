@@ -1,3 +1,10 @@
+<a name="v0.7.3"></a>
+# v0.7.3 (2015-11-01)
+
+## :bug: Bug Fixes
+
+- Fix SpacePenDSL not compatible with new custom element registration ([278c8867](https://github.com/abe33/atom-utils/commit/278c8867a1ac3a5402732bee526313031044ab75))
+
 <a name="v0.7.2"></a>
 # v0.7.2 (2015-11-01)
 
