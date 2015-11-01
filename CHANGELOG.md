@@ -1,3 +1,14 @@
+<a name="v0.7.0"></a>
+# v0.7.0 (2015-11-01)
+
+## :sparkles: Features
+
+- Add registerOrUpdateElement function ([3d6d5dd1](https://github.com/abe33/atom-utils/commit/3d6d5dd1e94455d743b07463bb21774bb110e70d))
+
+## Other
+
+- ResizeDetection mixin is now deprecated ([797b1c80](https://github.com/abe33/atom-utils/commit/797b1c8031d06efc3567bb73999235c2c93f3b50))
+
 <a name="v0.6.3"></a>
 # v0.6.3 (2015-09-21)
 
