@@ -18,14 +18,14 @@ decorateElementPrototype = (target, source) ->
       Object.defineProperty(target, k, descriptor)
 
 module.exports = (nodeName, proto) ->
-    if __CUSTOM_HTML_ELEMENTS_CLASSES__[nodeName]
-      elementClass = __CUSTOM_HTML_ELEMENTS_CLASSES__[nodeName]
+  if __CUSTOM_HTML_ELEMENTS_CLASSES__[nodeName]
+    elementClass = __CUSTOM_HTML_ELEMENTS_CLASSES__[nodeName]
 
-      decorateElementPrototype(elementClass.prototype, proto)
-      elementClass
-    else
-      elementPrototype = Object.create(HTMLElement.prototype)
-      decorateElementPrototype(elementPrototype, proto)
+    decorateElementPrototype(elementClass.prototype, proto)
+    elementClass
+  else
+    elementPrototype = Object.create(HTMLElement.prototype)
+    decorateElementPrototype(elementPrototype, proto)
 
-      elementClass = document.registerElement nodeName, prototype: Object.create(elementPrototype)
-      __CUSTOM_HTML_ELEMENTS_CLASSES__[nodeName] = elementClass
+    elementClass = document.registerElement nodeName, prototype: Object.create(elementPrototype)
+    __CUSTOM_HTML_ELEMENTS_CLASSES__[nodeName] = elementClass
