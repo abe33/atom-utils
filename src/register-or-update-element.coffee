@@ -2,8 +2,8 @@
 window.__CUSTOM_HTML_ELEMENTS_CLASSES__ ?= {}
 callbackProperties = ['createdCallback', 'attachedCallback','detachedCallback','attributeChangedCallback']
 decorateElementPrototype = (target, source) ->
-  for k in Object.keys(source)
-    continue if k is 'constructor'
+  Object.keys(source).forEach (k) ->
+    return if k is 'constructor'
 
     descriptor = Object.getOwnPropertyDescriptor(source, k)
     if callbackProperties.indexOf(k) > -1
