@@ -1,3 +1,10 @@
+<a name="v0.7.2"></a>
+# v0.7.2 (2015-11-01)
+
+## :bug: Bug Fixes
+
+- Fix loop iterator used as key in function ([8ebe3ac8](https://github.com/abe33/atom-utils/commit/8ebe3ac863cadecc58ea593f933e277df6396543))
+
 <a name="v0.7.1"></a>
 # v0.7.1 (2015-11-01)
 
