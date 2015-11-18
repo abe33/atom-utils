@@ -17,13 +17,28 @@ describe 'registerOrUpdateElement', ->
       createdCallback: ->
         @name = 'dummy'
 
+      update: ->
+        @name = 'updated dummy'
+
     class Dummy2
       createdCallback: ->
         @name = 'dummy2'
 
-    registerOrUpdateElement('dummy-element-2', Dummy.prototype)
-    registerOrUpdateElement('dummy-element-2', Dummy2.prototype)
+      update: ->
+        @name = 'updated dummy2'
+
+    Dummy = registerOrUpdateElement('dummy-element-2', Dummy.prototype)
 
     dummy = document.createElement('dummy-element-2')
+    expect(dummy.name).toEqual('dummy')
 
+    dummy.update()
+    expect(dummy.name).toEqual('updated dummy')
+
+    Dummy = registerOrUpdateElement('dummy-element-2', Dummy2.prototype)
+
+    dummy = document.createElement('dummy-element-2')
     expect(dummy.name).toEqual('dummy2')
+
+    dummy.update()
+    expect(dummy.name).toEqual('updated dummy2')
