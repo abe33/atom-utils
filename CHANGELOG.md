@@ -1,3 +1,10 @@
+<a name="v0.7.5"></a>
+# v0.7.5 (2015-12-07)
+
+## :bug: Bug Fixes
+
+- Fix babel classes not supported ([e0cfb2fe](https://github.com/abe33/atom-utils/commit/e0cfb2fe182a5887e20ef08757ac8676b315affd))
+
 <a name="v0.7.4"></a>
 # v0.7.4 (2015-11-01)
 
