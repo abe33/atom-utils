@@ -2,7 +2,7 @@
 window.__CUSTOM_HTML_ELEMENTS_CLASSES__ ?= {}
 callbackProperties = ['createdCallback', 'attachedCallback','detachedCallback','attributeChangedCallback']
 decorateElementPrototype = (target, source) ->
-  Object.keys(source).forEach (k) ->
+  Object.getOwnPropertyNames(source).forEach (k) ->
     return if k is 'constructor'
 
     descriptor = Object.getOwnPropertyDescriptor(source, k)

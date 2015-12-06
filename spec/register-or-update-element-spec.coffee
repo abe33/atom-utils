@@ -12,6 +12,15 @@ describe 'registerOrUpdateElement', ->
 
     expect(dummy.name).toEqual('dummy')
 
+  it 'registers a custom element even when the class was create by babel', ->
+    BabelDummy = require './fixtures/babel-dummy'
+
+    registerOrUpdateElement('babel-dummy-element', BabelDummy.prototype)
+
+    dummy = document.createElement('babel-dummy-element')
+
+    expect(dummy.name).toEqual('dummy')
+
   it 'updates the prototype of an already registered element', ->
     class Dummy
       createdCallback: ->
