@@ -12,6 +12,14 @@ describe 'registerOrUpdateElement', ->
 
     expect(dummy.name).toEqual('dummy')
 
+  it 'preserves static methods', ->
+    class StaticDummy
+      @staticMethod: -> 'dummy'
+
+    NewDummyClass = registerOrUpdateElement('static-dummy-element', class: StaticDummy)
+
+    expect(NewDummyClass.staticMethod()).toEqual('dummy')
+
   it 'registers a custom element even when the class was create by babel', ->
     BabelDummy = require './fixtures/babel-dummy'
 
