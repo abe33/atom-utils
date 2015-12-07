@@ -1,3 +1,10 @@
+<a name="v0.8.0"></a>
+# v0.8.0 (2015-12-07)
+
+## :sparkles: Features
+
+- Implement support for static methods when registering custom elements ([5d28ac22](https://github.com/abe33/atom-utils/commit/5d28ac22dd767653fe3403a60b46f6fccc3179f4))
+
 <a name="v0.7.5"></a>
 # v0.7.5 (2015-12-07)
 
