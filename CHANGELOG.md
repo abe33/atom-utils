@@ -1,3 +1,11 @@
+<a name="v0.9.0"></a>
+# v0.9.0 (2015-12-08)
+
+## :sparkles: Features
+
+- Implement a babel-friendly version of the space pen dsl ([b9478b5c](https://github.com/abe33/atom-utils/commit/b9478b5c5b8f90719798eb72dcc92a77bfd19dd7))
+  <br>Accessed through `SpacePenDSL.Babel`
+
 <a name="v0.8.0"></a>
 # v0.8.0 (2015-12-07)
 
