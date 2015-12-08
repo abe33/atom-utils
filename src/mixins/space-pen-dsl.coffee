@@ -19,8 +19,14 @@ Events =
    keypress keyup load mousedown mousemove mouseout mouseover
    mouseup resize scroll select submit unload'.split /\s+/
 
+class BabelSpacePenDSL extends Mixin
+  buildContent: ->
+    SpacePenDSL.buildContent(this, @constructor.content) if @constructor.content?
+
 module.exports =
 class SpacePenDSL extends Mixin
+  @Babel: BabelSpacePenDSL
+
   @includeInto: (klass) ->
     super(klass)
 
@@ -43,7 +49,6 @@ class SpacePenDSL extends Mixin
 
     klass.useShadowRoot = ->
       klass::__useShadowRoot__ = true
-
 
   @buildContent: (element, content) ->
     template = new Template
