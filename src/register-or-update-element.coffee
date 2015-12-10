@@ -2,17 +2,19 @@
 window.__CUSTOM_HTML_ELEMENTS_CLASSES__ ?= {}
 callbackProperties = ['createdCallback', 'attachedCallback','detachedCallback','attributeChangedCallback']
 decorateElementPrototype = (target, source) ->
+  callbackProperties.forEach (k) ->
+    Object.defineProperty target, k, {
+      value: -> @["__#{k}"].apply(this, arguments)
+      writable: true
+      enumerable: true
+      configurable: true
+    }
+
   Object.getOwnPropertyNames(source).forEach (k) ->
     return if k in ['constructor']
 
     descriptor = Object.getOwnPropertyDescriptor(source, k)
     if callbackProperties.indexOf(k) > -1
-      Object.defineProperty target, k, {
-        value: -> @["__#{k}"].apply(this, arguments)
-        writable: true
-        enumerable: true
-        configurable: true
-      }
       Object.defineProperty(target, "__#{k}", descriptor)
     else
       Object.defineProperty(target, k, descriptor)
