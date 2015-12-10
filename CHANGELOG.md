@@ -1,3 +1,11 @@
+<a name="v0.9.1"></a>
+# v0.9.1 (2015-12-11)
+
+## :bug: Bug Fixes
+
+- Fix callback can't be added to already registered prototype ([8752b11f](https://github.com/abe33/atom-utils/commit/8752b11fa32ae62e0a1c26905d93d22b843f6bce))
+- Fix constructor function properties improperly copied ([04439656](https://github.com/abe33/atom-utils/commit/04439656ee65efe8fd5bd5a38e32e526490cb4b7))
+
 <a name="v0.9.0"></a>
 # v0.9.0 (2015-12-08)
 
