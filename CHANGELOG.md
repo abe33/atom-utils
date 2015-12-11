@@ -1,3 +1,10 @@
+<a name="v0.9.2"></a>
+# v0.9.2 (2015-12-11)
+
+## :bug: Bug Fixes
+
+- Fix access to non existent callback in custom element ([c4b14968](https://github.com/abe33/atom-utils/commit/c4b1496836c96cec3ea740c3e6a021c934a37e53), [abe33/atom-pigments#120](https://github.com/abe33/atom-pigments/issues/120), [atom-minimap/minimap#424](https://github.com/atom-minimap/minimap/issues/424))
+
 <a name="v0.9.1"></a>
 # v0.9.1 (2015-12-11)
 
