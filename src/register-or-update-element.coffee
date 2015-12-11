@@ -4,7 +4,7 @@ callbackProperties = ['createdCallback', 'attachedCallback','detachedCallback','
 decorateElementPrototype = (target, source) ->
   callbackProperties.forEach (k) ->
     Object.defineProperty target, k, {
-      value: -> @["__#{k}"].apply(this, arguments)
+      value: -> @["__#{k}"]?.apply(this, arguments)
       writable: true
       enumerable: true
       configurable: true
