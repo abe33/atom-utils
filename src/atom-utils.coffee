@@ -32,5 +32,4 @@ module.exports =
   AncestorsMethods: require './mixins/ancestors'
   DisposableEvents: require './mixins/disposable-events'
   EventsDelegation: require './mixins/events-delegation'
-  ResizeDetection: require './mixins/resize-detection'
   SpacePenDSL: require './mixins/space-pen-dsl'
