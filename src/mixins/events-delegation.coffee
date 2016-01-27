@@ -1,6 +1,6 @@
 Mixin = require 'mixto'
 DisposableEvents = require './disposable-events'
-{Disposable, CompositeDisposable} = require 'event-kit'
+{Disposable, CompositeDisposable} = require 'atom'
 eachPair = (object, callback) -> callback(k,v) for k,v of object
 
 NO_SELECTOR = '__NONE__'

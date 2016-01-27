@@ -84,7 +84,7 @@ A mixin that provides a `addDisposableEventListener` method that registers an ev
 
 ```coffee
 {DisposableEvents} = require 'atom-utils'
-{CompositeDisposable} = require 'event-kit'
+{CompositeDisposable} = require 'atom'
 
 class DummyNode extends HTMLElement
   DisposableEvents.includeInto(this)
@@ -106,7 +106,7 @@ Use it by including it into your custom element:
 
 ```coffee
 {EventsDelegation} = require 'atom-utils'
-{CompositeDisposable} = require 'event-kit'
+{CompositeDisposable} = require 'atom'
 
 class DummyNode extends HTMLElement
   # It includes the mixin on the class prototype.

@@ -1,5 +1,5 @@
 Mixin = require 'mixto'
-{Disposable} = require 'event-kit'
+{Disposable} = require 'atom'
 
 module.exports =
 class DisposableEvents extends Mixin
