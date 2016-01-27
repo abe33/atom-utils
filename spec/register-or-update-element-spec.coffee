@@ -20,7 +20,7 @@ describe 'registerOrUpdateElement', ->
 
     expect(NewDummyClass.staticMethod()).toEqual('dummy')
 
-  it 'registers a custom element even when the class was create by babel', ->
+  it 'registers a custom element when the class was created by babel', ->
     BabelDummy = require './fixtures/babel-dummy'
 
     registerOrUpdateElement('babel-dummy-element', BabelDummy.prototype)
