@@ -1,6 +1,17 @@
 
-window.__CUSTOM_HTML_ELEMENTS_CLASSES__ ?= {}
-callbackProperties = ['createdCallback', 'attachedCallback','detachedCallback','attributeChangedCallback']
+if window.__CUSTOM_HTML_ELEMENTS_CLASSES__?
+  window.__ATOM_UTILS_CUSTOM_ELEMENT_CLASSES__ = window.__CUSTOM_HTML_ELEMENTS_CLASSES__
+  delete window.__CUSTOM_HTML_ELEMENTS_CLASSES__
+else
+  window.__ATOM_UTILS_CUSTOM_ELEMENT_CLASSES__ ?= {}
+
+callbackProperties = [
+  'createdCallback'
+  'attachedCallback'
+  'detachedCallback'
+  'attributeChangedCallback'
+]
+
 decorateElementPrototype = (target, source) ->
   callbackProperties.forEach (k) ->
     Object.defineProperty target, k, {
@@ -33,8 +44,8 @@ module.exports = (nodeName, options) ->
   else
     proto = options
 
-  if __CUSTOM_HTML_ELEMENTS_CLASSES__[nodeName]
-    elementClass = __CUSTOM_HTML_ELEMENTS_CLASSES__[nodeName]
+  if __ATOM_UTILS_CUSTOM_ELEMENT_CLASSES__[nodeName]
+    elementClass = __ATOM_UTILS_CUSTOM_ELEMENT_CLASSES__[nodeName]
 
     decorateElementPrototype(elementClass.prototype, proto)
     decorateElementClass(elementClass, klass) if klass?
@@ -48,4 +59,4 @@ module.exports = (nodeName, options) ->
 
     decorateElementClass(elementClass, klass) if klass?
 
-    __CUSTOM_HTML_ELEMENTS_CLASSES__[nodeName] = elementClass
+    __ATOM_UTILS_CUSTOM_ELEMENT_CLASSES__[nodeName] = elementClass
