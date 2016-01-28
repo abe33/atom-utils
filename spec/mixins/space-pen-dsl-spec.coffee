@@ -13,7 +13,7 @@ describe 'space-pen DSL', ->
     createdCallback: ->
       @created = true
 
-  DummyElement = registerOrUpdateElement 'dummy-element-dsl', DummyElement.prototype
+  DummyElement = registerOrUpdateElement 'dummy-element-dsl', prototype: DummyElement.prototype
 
   beforeEach ->
     element = new DummyElement
@@ -46,7 +46,7 @@ describe 'space-pen DSL', ->
       createdCallback: ->
         @created = true
 
-    ShadowDummyElement = registerOrUpdateElement 'shadow-dummy-element-dsl', ShadowDummyElement.prototype
+    ShadowDummyElement = registerOrUpdateElement 'shadow-dummy-element-dsl', prototype: ShadowDummyElement.prototype
 
     beforeEach ->
       element = new ShadowDummyElement

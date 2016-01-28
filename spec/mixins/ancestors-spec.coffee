@@ -6,7 +6,7 @@ describe 'Ancestors mixin', ->
   class DummyElement extends HTMLElement
     Ancestors.includeInto(this)
 
-  DummyElement = registerOrUpdateElement 'dummy-element-ancestors', DummyElement.prototype
+  DummyElement = registerOrUpdateElement 'dummy-element-ancestors', prototype: DummyElement.prototype
 
   beforeEach ->
     jasmineContent = document.body.querySelector('#jasmine-content')

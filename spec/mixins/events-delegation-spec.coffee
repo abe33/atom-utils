@@ -18,7 +18,7 @@ describe 'EventsDelegation', ->
       @firstChild.appendChild(document.createElement('span'))
       @appendChild(document.createElement('input'))
 
-  DummyElement = registerOrUpdateElement 'dummy-element-events', DummyElement.prototype
+  DummyElement = registerOrUpdateElement 'dummy-element-events', prototype: DummyElement.prototype
 
   beforeEach ->
     jasmineContent = document.body.querySelector('#jasmine-content')

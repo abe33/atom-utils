@@ -6,7 +6,7 @@ describe 'registerOrUpdateElement', ->
       createdCallback: ->
         @name = 'dummy'
 
-    registerOrUpdateElement('dummy-element', Dummy.prototype)
+    registerOrUpdateElement('dummy-element', prototype: Dummy.prototype)
 
     dummy = document.createElement('dummy-element')
 
@@ -23,7 +23,7 @@ describe 'registerOrUpdateElement', ->
   it 'registers a custom element when the class was created by babel', ->
     BabelDummy = require './fixtures/babel-dummy'
 
-    registerOrUpdateElement('babel-dummy-element', BabelDummy.prototype)
+    registerOrUpdateElement('babel-dummy-element', prototype: BabelDummy.prototype)
 
     dummy = document.createElement('babel-dummy-element')
 
@@ -44,7 +44,7 @@ describe 'registerOrUpdateElement', ->
       update: ->
         @name = 'updated dummy2'
 
-    Dummy = registerOrUpdateElement('dummy-element-2', Dummy.prototype)
+    Dummy = registerOrUpdateElement('dummy-element-2', prototype: Dummy.prototype)
 
     dummy = document.createElement('dummy-element-2')
     expect(dummy.name).toEqual('dummy')
@@ -52,7 +52,7 @@ describe 'registerOrUpdateElement', ->
     dummy.update()
     expect(dummy.name).toEqual('updated dummy')
 
-    Dummy = registerOrUpdateElement('dummy-element-2', Dummy2.prototype)
+    Dummy = registerOrUpdateElement('dummy-element-2', prototype: Dummy2.prototype)
 
     dummy = document.createElement('dummy-element-2')
     expect(dummy.name).toEqual('dummy2')

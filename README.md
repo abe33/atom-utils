@@ -16,7 +16,7 @@ requirePackages('tree-view', 'find-and-replace', 'snippets')
   # Do something with the required packages
 ```
 
-### registerOrUpdateElement(elementName, prototype)
+### registerOrUpdateElement(elementName, options)
 
 Registers or updates a custom element whose name is `elementName`.
 
@@ -24,13 +24,18 @@ Registers or updates a custom element whose name is `elementName`.
 {registerOrUpdateElement} = require 'atom-utils'
 
 class MyElement
+  @staticMethod: ->
+    console.log 'in static method'
+
   createdCallback: ->
     console.log 'element created'
 
-registerOrUpdateElement('my-element', MyElement.prototype)
+MyElement = registerOrUpdateElement('my-element', class: MyElement)
 ```
 
-The update is performed by copying the properties from the passed-in prototype in the registered element prototype. As a node's callback methods can't be overriden once the element have been registered, a generic version is created that will invoke the concrete callback when called, that way even the node's callback methods can be updated.
+The update is performed by copying the properties from the passed-in class and its prototype in the registered element class. As a node's callback methods can't be override once the element have been registered, a generic version is created that will invoke the concrete callback when called, that way even the node's callback methods can be updated.
+
+Only the class' prototype can be passed using the `prototype` option instead of `class`.
 
 ### Ancestors (previously AncestorsMethods)
 

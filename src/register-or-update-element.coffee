@@ -1,3 +1,4 @@
+{deprecate} = require 'grim'
 
 if window.__CUSTOM_HTML_ELEMENTS_CLASSES__?
   window.__ATOM_UTILS_CUSTOM_ELEMENT_CLASSES__ = window.__CUSTOM_HTML_ELEMENTS_CLASSES__
@@ -42,7 +43,11 @@ module.exports = (nodeName, options) ->
   if klass?
     proto = klass.prototype
   else
-    proto = options
+    proto = options.prototype ? options
+
+  if proto is options
+    deprecate('Using the prototype as the second argument is deprecated, use the prototype option instead')
+
 
   if __ATOM_UTILS_CUSTOM_ELEMENT_CLASSES__[nodeName]
     elementClass = __ATOM_UTILS_CUSTOM_ELEMENT_CLASSES__[nodeName]
