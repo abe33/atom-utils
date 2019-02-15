@@ -9,11 +9,11 @@ module.exports =
 class EventsDelegation extends Mixin
   DisposableEvents.includeInto(this)
 
-  subscribeTo: (object, selector, events) ->
+  subscribeTo: (object, selector, events, options) ->
     unless object instanceof HTMLElement
-      [object, selector, events] = [this, object, selector]
+      [object, selector, events, options] = [this, object, selector, events]
 
-    [events, selector] = [selector, NO_SELECTOR] if typeof selector is 'object'
+    [events, selector, options] = [selector, NO_SELECTOR, events] if typeof selector is 'object'
 
     @eventsMap ?= new WeakMap
     @disposablesMap ?= new WeakMap
@@ -26,7 +26,7 @@ class EventsDelegation extends Mixin
     eachPair events, (event, callback) =>
       unless eventsForObject[event]?
         eventsForObject[event] = {}
-        disposablesForObject[event] = @createEventListener(object, event)
+        disposablesForObject[event] = @createEventListener(object, event, options)
 
       eventsForObject[event][selector] = callback
 
@@ -53,7 +53,7 @@ class EventsDelegation extends Mixin
       @eventsMap.delete(object)
       @disposablesMap.delete(object)
 
-  createEventListener: (object, event) ->
+  createEventListener: (object, event, options) ->
     listener = (e) =>
       return unless eventsForObject = @eventsMap.get(object)?[event]
 
@@ -64,7 +64,7 @@ class EventsDelegation extends Mixin
       eventsForObject[NO_SELECTOR]?(e) unless e.isPropagationStopped
       return true
 
-    @addDisposableEventListener object, event, listener
+    @addDisposableEventListener object, event, listener, options
 
   eachSelectorFromTarget: (event, target, eventsForObject) ->
     @nodeAndItsAncestors target, (node) =>
